@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilson Espiritu · Ecommerce Web Studio</title>
+    <!-- Google Fonts for a modern, clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (free version) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 1.5rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafbfc;
+            color: #1e1e2f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Accessible screen-reader-only text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Smooth-scroll landing offset for anchored sections */
+        #work,
+        #ecommerce,
+        #about,
+        #contact {
+            scroll-margin-top: 1.5rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header / Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0b0b1a;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #3b5bdb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e1e2f;
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #3b5bdb;
+        }
+
+        .btn-outline {
+            border: 1.5px solid #3b5bdb;
+            background: transparent;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 600;
+            color: #3b5bdb;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .btn-outline:hover {
+            background: #3b5bdb;
+            color: white;
+        }
+
+        .btn-outline:active {
+            transform: scale(0.97);
+        }
+
+        /* Hero section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 0 5rem 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content .highlight {
+            color: #3b5bdb;
+            border-bottom: 3px solid #dbe4ff;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #4a4a6a;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1e1e2f;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+            touch-action: manipulation;
+        }
+
+        .btn-primary i {
+            font-size: 0.9rem;
+        }
+
+        .btn-primary:hover {
+            background: #2d2d44;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #cbd5e1;
+            color: #1e1e2f;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            touch-action: manipulation;
+        }
+
+        .btn-secondary:hover {
+            border-color: #3b5bdb;
+            background: #f0f4ff;
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.97);
+        }
+
+        .hero-visual {
+            background: linear-gradient(145deg, #f1f5f9, #ffffff);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        /* Mock e‑commerce browser preview */
+        .mock-browser {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .browser-bar {
+            background: #eef2f6;
+            padding: 0.7rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d9e6;
+        }
+
+        .browser-dot:nth-child(1) { background: #ff5f56; }
+        .browser-dot:nth-child(2) { background: #ffbd2e; }
+        .browser-dot:nth-child(3) { background: #27c93f; }
+
+        .browser-url {
+            background: white;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #5e6f88;
+            margin-left: 0.8rem;
+            flex: 1;
+            border: 1px solid #dbe0e8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mock-store {
+            padding: 1.2rem;
+        }
+
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .store-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #0b0b1a;
+        }
+
+        .store-logo i {
+            color: #3b5bdb;
+            margin-right: 0.3rem;
+        }
+
+        .cart-icon {
+            color: #3b5bdb;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            padding: 0.15rem 0.35rem;
+            margin: -0.15rem -0.35rem;
+            border: 0;
+            border-radius: 0.45rem;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            touch-action: manipulation;
+        }
+
+        .cart-icon:hover {
+            background: #eef2ff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .product-card {
+            background: #f9fafc;
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            border: 1px solid #eef1f5;
+        }
+
+        .product-img {
+            background: #e2e8f0;
+            height: 70px;
+            border-radius: 0.5rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 1.5rem;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-price {
+            font-size: 0.75rem;
+            color: #3b5bdb;
+            font-weight: 600;
+        }
+
+        .add-to-cart {
+            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            background: #1e1e2f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0.2rem 0.6rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+            transition: background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .add-to-cart:hover {
+            background: #2d2d44;
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.96);
+        }
+
+        /* Section heading */
+        .section-heading {
+            text-align: center;
+            margin: 4rem 0 2.5rem 0;
+        }
+
+        .section-heading h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-heading p {
+            color: #5a5a7a;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Ecommerce showcase (portfolio piece) */
+        .ecom-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+            border: 1px solid #edf2f7;
+            align-items: center;
+        }
+
+        .ecom-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .ecom-info .badge {
+            background: #dbe4ff;
+            color: #1e3a8a;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .ecom-info p {
+            color: #4a4a6a;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: #f1f5f9;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .project-link {
+            color: #3b5bdb;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            border: 0;
+            border-bottom: 1.5px solid transparent;
+            padding: 0;
+            transition: border-color 0.2s, color 0.2s;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .project-link:hover {
+            border-bottom-color: #3b5bdb;
+        }
+
+        .project-link:active {
+            transform: translateY(1px);
+        }
+
+        /* Second mock store (different variation) */
+        .mock-store-alt {
+            background: #0b0b1a;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: white;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .store-alt-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+
+        .store-alt-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .store-alt-logo i {
+            color: #a5b4fc;
+            margin-right: 0.3rem;
+        }
+
+        .store-alt-cart {
+            color: #a5b4fc;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.15rem 0.35rem;
+            margin: -0.15rem -0.35rem;
+            border: 0;
+            border-radius: 0.45rem;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            touch-action: manipulation;
+        }
+
+        .store-alt-cart:hover {
+            background: rgba(165, 180, 252, 0.12);
+        }
+
+        .product-grid-dark {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .product-card-dark {
+            background: #1e1e2f;
+            border-radius: 0.8rem;
+            padding: 0.9rem;
+            border: 1px solid #2e2e44;
+        }
+
+        .product-img-dark {
+            background: #2d2d44;
+            height: 80px;
+            border-radius: 0.5rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.6rem;
+        }
+
+        .product-name-dark {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: white;
+        }
+
+        .product-price-dark {
+            font-size: 0.75rem;
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+
+        .add-to-cart-dark {
+            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            background: #3b5bdb;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0.2rem 0.7rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+            transition: background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .add-to-cart-dark:hover {
+            background: #4c6ef5;
+        }
+
+        .add-to-cart-dark:active {
+            transform: scale(0.96);
+        }
+
+        /* Skill / service cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 4rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem 1.8rem;
+            border-radius: 1.5rem;
+            border: 1px solid #edf2f7;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(59, 91, 219, 0.15);
+            border-color: #cbd5e1;
+        }
+
+        .service-icon {
+            background: #eef2ff;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b5bdb;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            color: #5a5a7a;
+            font-size: 0.95rem;
+        }
+
+        /* contact / footer */
+        .footer {
+            border-top: 1px solid #e2e8f0;
+            padding: 2.5rem 0;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: #5e6f88;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-social button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            min-height: 2rem;
+            margin-left: 0.8rem;
+            padding: 0.2rem;
+            border: 0;
+            border-radius: 0.45rem;
+            background: transparent;
+            color: #5e6f88;
+            font-family: inherit;
+            font-size: 1.2rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .footer-social button:hover {
+            color: #3b5bdb;
+            background: #eef2ff;
+            transform: translateY(-2px);
+        }
+
+        .footer-social button:active {
+            transform: translateY(0) scale(0.94);
+        }
+
+        .footer-social i {
+            font-size: 1.2rem;
+        }
+
+        /* Verde mock store controls */
+        .verde-cart {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.15rem 0.35rem;
+            margin: -0.15rem -0.35rem;
+            border: 0;
+            border-radius: 0.45rem;
+            background: transparent;
+            color: #3b7a57;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            touch-action: manipulation;
+        }
+
+        .verde-cart:hover {
+            background: rgba(59, 122, 87, 0.1);
+        }
+
+        .verde-add {
+            margin-top: 6px;
+            padding: 2px 10px;
+            border: 0;
+            border-radius: 30px;
+            background: #1e3a2e;
+            color: white;
+            font-family: inherit;
+            font-size: 0.65rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .verde-add:hover {
+            background: #2f5d46;
+        }
+
+        .verde-add:active {
+            transform: scale(0.96);
+        }
+
+        /* Temporary "added" confirmation on cart buttons */
+        [data-action="add-to-cart"].is-added {
+            background: #2f9e44 !important;
+        }
+
+        /* Cart icon bounce after a product is added */
+        .cart-bump {
+            animation: cart-bump 0.42s ease;
+        }
+
+        @keyframes cart-bump {
+            0% { transform: scale(1) rotate(0deg); }
+            35% { transform: scale(1.22) rotate(-5deg); }
+            70% { transform: scale(0.96) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Reusable modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(11, 11, 26, 0.55);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            overflow-y: auto;
+            transition: opacity 0.22s ease, visibility 0.22s ease;
+        }
+
+        .modal-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-panel {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            max-height: calc(100vh - 2.5rem);
+            overflow-y: auto;
+            padding: 2.25rem 2rem 2rem;
+            border-radius: 1.5rem;
+            background: white;
+            box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.45);
+            transform: translateY(18px) scale(0.98);
+            transition: transform 0.22s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.is-open .modal-panel {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: 0;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #1e1e2f;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            transform: rotate(90deg);
+        }
+
+        .modal-close:active {
+            transform: rotate(90deg) scale(0.92);
+        }
+
+        .modal-kicker {
+            margin-bottom: 0.5rem;
+            padding-right: 2rem;
+            color: #3b5bdb;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 0.75rem;
+            padding-right: 2rem;
+            font-size: 1.75rem;
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 0.35rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+            color: #4a4a6a;
+        }
+
+        .modal-content .tech-list {
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-list {
+            display: grid;
+            gap: 0.6rem;
+            margin: 1rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .modal-list li {
+            position: relative;
+            padding-left: 1.6rem;
+            color: #4a4a6a;
+        }
+
+        .modal-list li::before {
+            content: "✓";
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #3b5bdb;
+            font-weight: 700;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-actions .btn-primary,
+        .modal-actions .btn-secondary {
+            justify-content: center;
+        }
+
+        .process-list {
+            display: grid;
+            gap: 0.8rem;
+            margin-top: 1.25rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            padding: 0.9rem;
+            border: 1px solid #edf2f7;
+            border-radius: 1rem;
+            background: #fafbfc;
+        }
+
+        .step-number {
+            display: flex;
+            flex: 0 0 1.9rem;
+            align-items: center;
+            justify-content: center;
+            width: 1.9rem;
+            height: 1.9rem;
+            border-radius: 50%;
+            background: #dbe4ff;
+            color: #1e3a8a;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .process-step p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact form inside the modal */
+        .modal-form {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .form-group label {
+            color: #1e1e2f;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border: 1.5px solid #dbe0e8;
+            border-radius: 0.8rem;
+            background: white;
+            color: #1e1e2f;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b5bdb;
+            box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.12);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            justify-content: center;
+            width: 100%;
+        }
+
+        .form-note {
+            margin: -0.2rem 0 0 !important;
+            color: #7b7b98 !important;
+            font-size: 0.75rem;
+        }
+
+        .form-success {
+            padding: 0.5rem 0 0.25rem;
+            text-align: center;
+        }
+
+        .form-success-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.2rem;
+            border-radius: 50%;
+            background: #e6fcf5;
+            color: #0ca678;
+            font-size: 1.6rem;
+        }
+
+        .form-success .modal-kicker {
+            padding-right: 0;
+        }
+
+        .form-success h2 {
+            padding-right: 0;
+        }
+
+        .form-success .modal-actions {
+            justify-content: center;
+        }
+
+        /* Reusable toast notifications */
+        .toast-stack {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            width: min(90vw, 430px);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .toast {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.9rem;
+            background: #1e1e2f;
+            color: white;
+            box-shadow: 0 18px 35px -12px rgba(0, 0, 0, 0.35);
+            font-size: 0.9rem;
+            pointer-events: auto;
+            animation: toast-in 0.25s ease both;
+        }
+
+        .toast i {
+            flex: 0 0 auto;
+            color: #a5b4fc;
+            font-size: 1rem;
+        }
+
+        .toast.is-hiding {
+            animation: toast-out 0.2s ease forwards;
+        }
+
+        @keyframes toast-in {
+            from { opacity: 0; transform: translateY(10px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes toast-out {
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(8px) scale(0.97); }
+        }
+
+        /* Keyboard focus visibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #3b5bdb;
+            outline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .ecom-showcase {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .product-grid, .product-grid-dark {
+                grid-template-columns: 1fr;
+            }
+            .section-heading h2 {
+                font-size: 1.8rem;
+            }
+            .modal-overlay {
+                padding: 0.75rem;
+            }
+            .modal-panel {
+                max-height: calc(100vh - 1.5rem);
+                padding: 1.8rem 1.25rem 1.5rem;
+                border-radius: 1.25rem;
+            }
+            .modal-content h2 {
+                font-size: 1.5rem;
+            }
+            .toast-stack {
+                bottom: 1rem;
+                width: calc(100vw - 2rem);
+            }
+            .modal-actions .btn-primary,
+            .modal-actions .btn-secondary {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar" aria-label="Primary navigation">
+            <a href="#top" class="logo" data-scroll="#top">Wilson<span>Espiritu</span></a>
+            <ul class="nav-links">
+                <li><a href="#work" data-scroll="#work">Work</a></li>
+                <li><a href="#ecommerce" data-scroll="#ecommerce">Ecommerce</a></li>
+                <li><a href="#about" data-scroll="#about">About</a></li>
+                <li><a href="#contact" data-scroll="#contact">Contact</a></li>
+            </ul>
+            <button type="button" class="btn-outline" data-action="open-contact">Let's talk</button>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Crafting <span class="highlight">ecommerce</span> websites that convert.</h1>
+                <p>Wilson Espiritu — portfolio of a website maker. I design and build high‑performance online stores, even if they don't exist yet. Let's bring your store to life.</p>
+                <div class="cta-buttons">
+                    <a href="#ecommerce" class="btn-primary" data-scroll="#ecommerce"><i class="fas fa-bag-shopping" aria-hidden="true"></i> View ecommerce demo</a>
+                    <button type="button" class="btn-secondary" data-action="open-process"><i class="fas fa-code" aria-hidden="true"></i> My process</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Mock e‑commerce browser (light) -->
+                <div class="mock-browser">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <div class="browser-url">wilsonespiritu.store</div>
+                    </div>
+                    <div class="mock-store">
+                        <div class="store-header">
+                            <div class="store-logo"><i class="fas fa-cube" aria-hidden="true"></i> WilStore</div>
+                            <button type="button" class="cart-icon" data-action="show-cart" data-store="wilstore" data-cart-trigger="wilstore" aria-label="View WilStore cart, 2 items">
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                <span>(<span data-cart-for="wilstore">2</span>)</span>
+                            </button>
+                        </div>
+                        <div class="product-grid">
+                            <div class="product-card">
+                                <div class="product-img"><i class="fas fa-headphones" aria-hidden="true"></i></div>
+                                <div class="product-name">Aura Headphones</div>
+                                <div class="product-price">$129.00</div>
+                                <button type="button" class="add-to-cart" data-action="add-to-cart" data-store="wilstore" data-product="Aura Headphones">Add to cart</button>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-img"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
+                                <div class="product-name">Nova Phone</div>
+                                <div class="product-price">$799.00</div>
+                                <button type="button" class="add-to-cart" data-action="add-to-cart" data-store="wilstore" data-product="Nova Phone">Add to cart</button>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-img"><i class="fas fa-clock" aria-hidden="true"></i></div>
+                                <div class="product-name">Pulse Watch</div>
+                                <div class="product-price">$249.00</div>
+                                <button type="button" class="add-to-cart" data-action="add-to-cart" data-store="wilstore" data-product="Pulse Watch">Add to cart</button>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-img"><i class="fas fa-laptop" aria-hidden="true"></i></div>
+                                <div class="product-name">Slate Laptop</div>
+                                <div class="product-price">$1,299.00</div>
+                                <button type="button" class="add-to-cart" data-action="add-to-cart" data-store="wilstore" data-product="Slate Laptop">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected work / ecommerce showcase -->
+        <section aria-label="Selected work">
+            <div class="section-heading" id="ecommerce">
+                <h2>Ecommerce showcase</h2>
+                <p>Full‑stack store concepts built for conversion, speed, and clean UX.</p>
+            </div>
+
+        <!-- Showcase 1: LUMINA store (dark theme) -->
+        <div class="ecom-showcase" id="work">
+            <div class="ecom-info">
+                <span class="badge">portfolio piece</span>
+                <h3>LUMINA — premium audio</h3>
+                <p>Dark‑themed ecommerce concept for a high‑end audio brand. Features product grid, cart preview, and subtle micro‑interactions. Fully responsive, built with modern UI principles.</p>
+                <div class="tech-list">
+                    <span class="tech-tag">HTML5/CSS3</span>
+                    <span class="tech-tag">Flex/Grid</span>
+                    <span class="tech-tag">Responsive</span>
+                    <span class="tech-tag">Dark UI</span>
+                </div>
+                <button type="button" class="project-link" data-action="open-project" data-project="lumina">Explore case study <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+            <div class="mock-store-alt">
+                <div class="store-alt-header">
+                    <div class="store-alt-logo"><i class="fas fa-circle" aria-hidden="true"></i> LUMINA</div>
+                    <button type="button" class="store-alt-cart" data-action="show-cart" data-store="lumina" data-cart-trigger="lumina" aria-label="View LUMINA cart, 0 items">
+                        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                        <span data-cart-for="lumina">0</span>
+                    </button>
+                </div>
+                <div class="product-grid-dark">
+                    <div class="product-card-dark">
+                        <div class="product-img-dark"><i class="fas fa-headphones-simple" aria-hidden="true"></i></div>
+                        <div class="product-name-dark">Aurora X</div>
+                        <div class="product-price-dark">$349</div>
+                        <button type="button" class="add-to-cart-dark" data-action="add-to-cart" data-store="lumina" data-product="Aurora X">Add to bag</button>
+                    </div>
+                    <div class="product-card-dark">
+                        <div class="product-img-dark"><i class="fas fa-microphone" aria-hidden="true"></i></div>
+                        <div class="product-name-dark">Vocal Pro</div>
+                        <div class="product-price-dark">$199</div>
+                        <button type="button" class="add-to-cart-dark" data-action="add-to-cart" data-store="lumina" data-product="Vocal Pro">Add to bag</button>
+                    </div>
+                    <div class="product-card-dark">
+                        <div class="product-img-dark"><i class="fas fa-ear-listen" aria-hidden="true"></i></div>
+                        <div class="product-name-dark">Ear Buds</div>
+                        <div class="product-price-dark">$89</div>
+                        <button type="button" class="add-to-cart-dark" data-action="add-to-cart" data-store="lumina" data-product="Ear Buds">Add to bag</button>
+                    </div>
+                    <div class="product-card-dark">
+                        <div class="product-img-dark"><i class="fas fa-record-vinyl" aria-hidden="true"></i></div>
+                        <div class="product-name-dark">Vinyl Kit</div>
+                        <div class="product-price-dark">$259</div>
+                        <button type="button" class="add-to-cart-dark" data-action="add-to-cart" data-store="lumina" data-product="Vinyl Kit">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Showcase 2: second ecommerce piece, different layout -->
+        <div class="ecom-showcase" style="background: #f9fbfe;">
+            <div class="ecom-info">
+                <span class="badge">fresh concept</span>
+                <h3>Verde — sustainable home</h3>
+                <p>Light, airy ecommerce layout for eco‑friendly products. Clean product cards, earthy accents, and a focus on brand storytelling. Ready for Shopify or custom backend.</p>
+                <div class="tech-list">
+                    <span class="tech-tag">UI Design</span>
+                    <span class="tech-tag">Accessibility</span>
+                    <span class="tech-tag">E‑commerce</span>
+                    <span class="tech-tag">Prototype</span>
+                </div>
+                <button type="button" class="project-link" data-action="open-project" data-project="verde">View prototype <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+            <div style="background: #e9f3e9; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);">
+                <!-- second mock store with green accent -->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1.2rem; align-items: center;">
+                    <div style="font-weight: 700; color: #1e3a2e;"><i class="fas fa-leaf" style="color: #3b7a57; margin-right: 6px;" aria-hidden="true"></i> verde</div>
+                    <button type="button" class="verde-cart" data-action="show-cart" data-store="verde" data-cart-trigger="verde" aria-label="View verde cart, 0 items">
+                        <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                        <span>(<span data-cart-for="verde">0</span>)</span>
+                    </button>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="background: white; border-radius: 0.8rem; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                        <div style="background: #d9e8da; height: 70px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: #3b7a57; font-size: 1.8rem;"><i class="fas fa-seedling" aria-hidden="true"></i></div>
+                        <div style="font-weight: 600; font-size: 0.85rem; margin-top: 8px;">Bamboo set</div>
+                        <div style="font-size: 0.8rem; color: #3b7a57; font-weight: 600;">$34</div>
+                        <button type="button" class="verde-add" data-action="add-to-cart" data-store="verde" data-product="Bamboo set">Add</button>
+                    </div>
+                    <div style="background: white; border-radius: 0.8rem; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                        <div style="background: #d9e8da; height: 70px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: #3b7a57; font-size: 1.8rem;"><i class="fas fa-mug-hot" aria-hidden="true"></i></div>
+                        <div style="font-weight: 600; font-size: 0.85rem; margin-top: 8px;">Clay mug</div>
+                        <div style="font-size: 0.8rem; color: #3b7a57; font-weight: 600;">$18</div>
+                        <button type="button" class="verde-add" data-action="add-to-cart" data-store="verde" data-product="Clay mug">Add</button>
+                    </div>
+                    <div style="background: white; border-radius: 0.8rem; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                        <div style="background: #d9e8da; height: 70px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: #3b7a57; font-size: 1.8rem;"><i class="fas fa-basket-shopping" aria-hidden="true"></i></div>
+                        <div style="font-weight: 600; font-size: 0.85rem; margin-top: 8px;">Woven basket</div>
+                        <div style="font-size: 0.8rem; color: #3b7a57; font-weight: 600;">$42</div>
+                        <button type="button" class="verde-add" data-action="add-to-cart" data-store="verde" data-product="Woven basket">Add</button>
+                    </div>
+                    <div style="background: white; border-radius: 0.8rem; padding: 0.9rem; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                        <div style="background: #d9e8da; height: 70px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: #3b7a57; font-size: 1.8rem;"><i class="fas fa-soap" aria-hidden="true"></i></div>
+                        <div style="font-weight: 600; font-size: 0.85rem; margin-top: 8px;">Soap bar</div>
+                        <div style="font-size: 0.8rem; color: #3b7a57; font-weight: 600;">$12</div>
+                        <button type="button" class="verde-add" data-action="add-to-cart" data-store="verde" data-product="Soap bar">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Services / what I do -->
+        <section id="about" aria-labelledby="about-heading">
+            <div class="section-heading">
+                <h2 id="about-heading">What I bring to your store</h2>
+                <p>From first wireframe to launch — websites that work.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
+                    <h4>UI &amp; UX design</h4>
+                    <p>Clean, intuitive interfaces that guide customers smoothly from product to checkout.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+                    <h4>Front‑end build</h4>
+                    <p>Responsive, fast‑loading storefronts using modern HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cart-shopping" aria-hidden="true"></i></div>
+                    <h4>Ecommerce logic</h4>
+                    <p>Product grids, cart interactions, and payment flow — functional prototypes or production ready.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
+                    <h4>Mobile first</h4>
+                    <p>Every store looks and works beautifully on any device — from phone to desktop.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / contact -->
+        <footer class="footer" id="contact" aria-label="Contact and social links">
+            <div>© 2025 Wilson Espiritu — ecommerce websites &amp; portfolio.</div>
+            <div class="footer-social">
+                <button type="button" data-action="social" data-platform="GitHub" aria-label="Connect with Wilson on GitHub"><i class="fab fa-github" aria-hidden="true"></i></button>
+                <button type="button" data-action="social" data-platform="LinkedIn" aria-label="Connect with Wilson on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+                <button type="button" data-action="social" data-platform="Dribbble" aria-label="Connect with Wilson on Dribbble"><i class="fab fa-dribbble" aria-hidden="true"></i></button>
+                <button type="button" data-action="social" data-platform="Email" aria-label="Connect with Wilson by email"><i class="fas fa-envelope" aria-hidden="true"></i></button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Single reusable modal shell. Content is injected by JavaScript. -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button type="button" class="modal-close" data-action="close-modal" aria-label="Close dialog">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Reusable toast notifications and screen-reader live region -->
+    <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+    <div class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            /* -----------------------------------------------------------------
+               DOM references and shared state
+            ------------------------------------------------------------------ */
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalContent = document.getElementById('modalContent');
+            const toastStack = document.getElementById('toastStack');
+            const liveRegion = document.getElementById('liveRegion');
+            let lastFocusedElement = null;
+
+            /* Cart state. WilStore starts at 2 to match the original counter. */
+            const carts = {
+                wilstore: { name: 'WilStore', count: 2, items: [] },
+                lumina: { name: 'LUMINA', count: 0, items: [] },
+                verde: { name: 'verde', count: 0, items: [] }
+            };
+
+            /* Used to clear each add-to-cart button's temporary label timer. */
+            const buttonTimers = new WeakMap();
+
+            /* Project details rendered into the shared modal. */
+            const projects = {
+                lumina: {
+                    kicker: 'Case study',
+                    title: 'LUMINA — premium audio',
+                    intro: 'A dark-themed ecommerce concept for a high-end audio brand. The goal was to make product discovery feel calm and premium while keeping the route from product to checkout short.',
+                    tech: ['HTML5/CSS3', 'CSS Grid & Flexbox', 'Responsive design', 'Dark UI system'],
+                    built: [
+                        'Dark storefront with a responsive four-product grid',
+                        'Add-to-bag interactions with live cart counts and confirmation states',
+                        'Mobile-first layout with accessible focus and tap targets',
+                        'Subtle micro-interactions that reinforce the premium brand feel'
+                    ]
+                },
+                verde: {
+                    kicker: 'Prototype',
+                    title: 'Verde — sustainable home',
+                    intro: 'A light, airy storefront for eco-friendly home goods. The design leans on earthy accents, generous whitespace, and brand storytelling to make sustainable products feel approachable.',
+                    tech: ['UI design', 'Accessibility', 'Ecommerce UX', 'Interactive prototype'],
+                    built: [
+                        'Clean, card-based product layout with an earthy green palette',
+                        'Responsive product grid ready for Shopify or a custom backend',
+                        'Accessible controls and readable typography across screen sizes',
+                        'Clickable add-to-basket prototype with cart feedback'
+                    ]
+                }
+            };
+
+            /* -----------------------------------------------------------------
+               Utilities
+            ------------------------------------------------------------------ */
+
+            /**
+             * Escapes user-provided text before it is inserted into innerHTML.
+             * Used by the contact success screen so a name cannot inject markup.
+             */
+            function escapeHTML(value) {
+                return String(value).replace(/[&<>"']/g, function (character) {
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#39;'
+                    }[character];
+                });
+            }
+
+            /**
+             * Smoothly scrolls to an element using scrollIntoView.
+             * The header offset comes from CSS scroll-margin-top.
+             */
+            function smoothScrollTo(selector) {
+                const target = document.querySelector(selector);
+                if (!target) return;
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            /* -----------------------------------------------------------------
+               Toast notifications
+            ------------------------------------------------------------------ */
+
+            /**
+             * Creates a toast at the bottom center of the screen.
+             * It is auto-dismissed after 3 seconds with a short exit animation.
+             */
+            function showToast(message, iconClass) {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+
+                const icon = document.createElement('i');
+                icon.className = iconClass || 'fas fa-circle-check';
+                icon.setAttribute('aria-hidden', 'true');
+
+                const text = document.createElement('span');
+                text.textContent = message;
+
+                toast.appendChild(icon);
+                toast.appendChild(text);
+                toastStack.appendChild(toast);
+
+                /* Keep the stack tidy if several actions happen quickly. */
+                while (toastStack.children.length > 4) {
+                    toastStack.firstElementChild.remove();
+                }
+
+                window.setTimeout(function () {
+                    toast.classList.add('is-hiding');
+                    window.setTimeout(function () {
+                        toast.remove();
+                    }, 220);
+                }, 3000);
+            }
+
+            /* -----------------------------------------------------------------
+               Reusable modal system
+            ------------------------------------------------------------------ */
+
+            /**
+             * Opens the single shared modal with injected HTML.
+             * It remembers the trigger so focus can return there on close.
+             */
+            function openModal(html) {
+                if (!modalOverlay.classList.contains('is-open')) {
+                    lastFocusedElement = document.activeElement;
+                }
+
+                modalContent.innerHTML = html;
+                modalOverlay.classList.add('is-open');
+                modalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+
+                /* Wait for the panel transition, then focus the first control. */
+                window.requestAnimationFrame(function () {
+                    const firstControl = modalContent.querySelector('input, textarea, button, a');
+                    const closeButton = modalOverlay.querySelector('.modal-close');
+                    (firstControl || closeButton).focus();
+                });
+            }
+
+            /**
+             * Closes the modal, unlocks body scrolling, and restores focus.
+             */
+            function closeModal() {
+                if (!modalOverlay.classList.contains('is-open')) return;
+
+                modalOverlay.classList.remove('is-open');
+                modalOverlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+
+                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                    lastFocusedElement.focus();
+                }
+                lastFocusedElement = null;
+            }
+
+            /**
+             * Keeps keyboard focus inside the open modal while it is visible.
+             */
+            function trapModalFocus(event) {
+                const focusable = modalOverlay.querySelectorAll(
+                    'button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                );
+
+                if (!focusable.length) return;
+
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
+
+            /* -----------------------------------------------------------------
+               Modal content templates
+            ------------------------------------------------------------------ */
+
+            /**
+             * Builds the contact form for the shared modal.
+             */
+            function openContactModal() {
+                openModal(
+                    '<div class="modal-kicker">Let\'s work together</div>' +
+                    '<h2 id="modalTitle">Tell me about your store</h2>' +
+                    '<p>Share a few details and I\'ll get back to you within 1–2 business days.</p>' +
+                    '<form id="contactForm" class="modal-form">' +
+                        '<div class="form-group">' +
+                            '<label for="contact-name">Name</label>' +
+                            '<input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label for="contact-email">Email</label>' +
+                            '<input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                            '<label for="contact-message">Message</label>' +
+                            '<textarea id="contact-message" name="message" placeholder="What are you building?" required></textarea>' +
+                        '</div>' +
+                        '<button type="submit" class="btn-primary form-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send message</button>' +
+                        '<p class="form-note">Demo form — no data is sent to a server.</p>' +
+                    '</form>'
+                );
+            }
+
+            /**
+             * Opens the process explainer modal.
+             */
+            function openProcessModal() {
+                openModal(
+                    '<div class="modal-kicker">How I work</div>' +
+                    '<h2 id="modalTitle">From idea to launch</h2>' +
+                    '<p>A clear, collaborative process keeps the design focused and the build predictable.</p>' +
+                    '<div class="process-list">' +
+                        '<div class="process-step"><span class="step-number">01</span><div><h3>Discover</h3><p>We define your products, audience, and the one action every visitor should take.</p></div></div>' +
+                        '<div class="process-step"><span class="step-number">02</span><div><h3>Design</h3><p>I map the customer journey and shape a clean, conversion-focused storefront.</p></div></div>' +
+                        '<div class="process-step"><span class="step-number">03</span><div><h3>Build</h3><p>Responsive HTML, CSS, and JavaScript bring the design to life with real interactions.</p></div></div>' +
+                        '<div class="process-step"><span class="step-number">04</span><div><h3>Launch &amp; refine</h3><p>We test across devices, polish the details, and prepare the store for real customers.</p></div></div>' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                        '<button type="button" class="btn-primary" data-action="open-contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</button>' +
+                        '<button type="button" class="btn-secondary" data-action="close-modal">Close</button>' +
+                    '</div>'
+                );
+            }
+
+            /**
+             * Opens a project-specific case study from the project data.
+             */
+            function openProjectModal(projectKey) {
+                const project = projects[projectKey];
+                if (!project) return;
+
+                const techTags = project.tech.map(function (technology) {
+                    return '<span class="tech-tag">' + technology + '</span>';
+                }).join('');
+
+                const builtItems = project.built.map(function (item) {
+                    return '<li>' + item + '</li>';
+                }).join('');
+
+                openModal(
+                    '<div class="modal-kicker">' + project.kicker + '</div>' +
+                    '<h2 id="modalTitle">' + project.title + '</h2>' +
+                    '<p>' + project.intro + '</p>' +
+                    '<div class="tech-list">' + techTags + '</div>' +
+                    '<h3>What I built</h3>' +
+                    '<ul class="modal-list">' + builtItems + '</ul>' +
+                    '<div class="modal-actions">' +
+                        '<button type="button" class="btn-primary" data-action="open-contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a similar project</button>' +
+                        '<button type="button" class="btn-secondary" data-action="close-modal">Close</button>' +
+                    '</div>'
+                );
+            }
+
+            /* -----------------------------------------------------------------
+               Mock store cart behavior
+            ------------------------------------------------------------------ */
+
+            /**
+             * Updates every visible counter and the accessible cart label
+             * for one store.
+             */
+            function updateCartCount(storeKey) {
+                const cart = carts[storeKey];
+                if (!cart) return;
+
+                const counters = document.querySelectorAll('[data-cart-for="' + storeKey + '"]');
+                counters.forEach(function (counter) {
+                    counter.textContent = cart.count;
+                });
+
+                const triggers = document.querySelectorAll('[data-cart-trigger="' + storeKey + '"]');
+                triggers.forEach(function (trigger) {
+                    const label = 'View ' + cart.name + ' cart, ' + cart.count + ' item' + (cart.count === 1 ? '' : 's');
+                    trigger.setAttribute('aria-label', label);
+                });
+            }
+
+            /**
+             * Gives the matching cart icon a short bounce animation.
+             */
+            function animateCart(storeKey) {
+                const triggers = document.querySelectorAll('[data-cart-trigger="' + storeKey + '"]');
+                triggers.forEach(function (trigger) {
+                    trigger.classList.remove('cart-bump');
+                    void trigger.offsetWidth; /* Restart the CSS animation. */
+                    trigger.classList.add('cart-bump');
+                    window.setTimeout(function () {
+                        trigger.classList.remove('cart-bump');
+                    }, 450);
+                });
+            }
+
+            /**
+             * Adds a product, updates the counter, confirms on the button,
+             * and announces the change to assistive technology.
+             */
+            function addToCart(button) {
+                const storeKey = button.dataset.store;
+                const product = button.dataset.product;
+                const cart = carts[storeKey];
+
+                if (!cart || !product) return;
+
+                cart.count += 1;
+                cart.items.push(product);
+
+                updateCartCount(storeKey);
+                animateCart(storeKey);
+
+                liveRegion.textContent = product + ' added to ' + cart.name + ' cart. ' + cart.count + ' items total.';
+
+                /* Remember the original label once, then show "✓ Added". */
+                if (!button.dataset.originalLabel) {
+                    button.dataset.originalLabel = button.textContent.trim();
+                }
+
+                button.textContent = '✓ Added';
+                button.classList.add('is-added');
+
+                /* Cancel an earlier timer if this button is clicked repeatedly. */
+                if (buttonTimers.has(button)) {
+                    window.clearTimeout(buttonTimers.get(button));
+                }
+
+                const timer = window.setTimeout(function () {
+                    button.textContent = button.dataset.originalLabel;
+                    button.classList.remove('is-added');
+                    buttonTimers.delete(button);
+                }, 1500);
+
+                buttonTimers.set(button, timer);
+            }
+
+            /**
+             * Shows a toast with the current item count for one store.
+             */
+            function showCart(storeKey) {
+                const cart = carts[storeKey];
+                if (!cart) return;
+
+                const itemWord = cart.count === 1 ? 'item' : 'items';
+                let message = cart.name + ' cart: ' + cart.count + ' ' + itemWord + '.';
+
+                if (cart.items.length) {
+                    const recentItems = cart.items.slice(-3).join(', ');
+                    message += ' Recently added: ' + recentItems + '.';
+                }
+
+                showToast(message, 'fas fa-shopping-bag');
+            }
+
+            /* -----------------------------------------------------------------
+               Event handling
+            ------------------------------------------------------------------ */
+
+            /* Delegated click handling keeps all interactive elements clean. */
+            document.addEventListener('click', function (event) {
+                const target = event.target instanceof Element ? event.target : event.target.parentElement;
+                if (!target) return;
+
+                const actionElement = target.closest('[data-action]');
+
+                if (actionElement) {
+                    const action = actionElement.dataset.action;
+
+                    switch (action) {
+                        case 'open-contact':
+                            event.preventDefault();
+                            openContactModal();
+                            break;
+
+                        case 'open-process':
+                            event.preventDefault();
+                            openProcessModal();
+                            break;
+
+                        case 'open-project':
+                            event.preventDefault();
+                            openProjectModal(actionElement.dataset.project);
+                            break;
+
+                        case 'add-to-cart':
+                            event.preventDefault();
+                            addToCart(actionElement);
+                            break;
+
+                        case 'show-cart':
+                            event.preventDefault();
+                            showCart(actionElement.dataset.store);
+                            break;
+
+                        case 'social':
+                            event.preventDefault();
+                            showToast('Connect with Wilson on ' + actionElement.dataset.platform, 'fas fa-link');
+                            break;
+
+                        case 'close-modal':
+                            event.preventDefault();
+                            closeModal();
+                            break;
+                    }
+
+                    return;
+                }
+
+                /* Smooth-scroll links (navigation, logo, hero demo CTA). */
+                const scrollElement = target.closest('[data-scroll]');
+                if (scrollElement) {
+                    event.preventDefault();
+                    smoothScrollTo(scrollElement.dataset.scroll);
+                }
+            });
+
+            /* Clicking the dark overlay outside the panel closes the modal. */
+            modalOverlay.addEventListener('click', function (event) {
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            /* Escape closes; Tab is kept inside the open modal. */
+            document.addEventListener('keydown', function (event) {
+                if (!modalOverlay.classList.contains('is-open')) return;
+
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeModal();
+                } else if (event.key === 'Tab') {
+                    trapModalFocus(event);
+                }
+            });
+
+            /* Simulated contact form submission. */
+            document.addEventListener('submit', function (event) {
+                if (!event.target.matches('#contactForm')) return;
+
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const name = String(formData.get('name') || '').trim();
+                const email = String(formData.get('email') || '').trim();
+                const message = String(formData.get('message') || '').trim();
+
+                if (!name || !email || !message) {
+                    showToast('Please fill in all fields.', 'fas fa-exclamation-circle');
+                    return;
+                }
+
+                modalContent.innerHTML =
+                    '<div class="form-success">' +
+                        '<div class="form-success-icon"><i class="fas fa-check" aria-hidden="true"></i></div>' +
+                        '<div class="modal-kicker">Message sent</div>' +
+                        '<h2 id="modalTitle">Thanks, ' + escapeHTML(name) + '!</h2>' +
+                        '<p>Your message has been received. I\'ll get back to you soon to talk through the next steps for your store.</p>' +
+                        '<div class="modal-actions">' +
+                            '<button type="button" class="btn-primary" data-action="close-modal">Close</button>' +
+                            '<button type="button" class="btn-secondary" data-action="open-contact">Send another</button>' +
+                        '</div>' +
+                    '</div>';
+
+                liveRegion.textContent = 'Message sent successfully. Thanks, ' + name + '.';
+                showToast('Message sent — thanks, ' + name + '!', 'fas fa-paper-plane');
+            });
+
+            /* Sync the visible counters with the initial cart state. */
+            Object.keys(carts).forEach(updateCartCount);
+        })();
+    </script>
+</body>
+</html>
